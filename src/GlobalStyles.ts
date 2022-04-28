@@ -9,8 +9,12 @@ const GlobalStyle = createGlobalStyle`
 input{
     border: none
 }
+li{
+    list-style-type: none
+}
 body{
-    font-family: 'Raleway', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    font-family: 'Inter', sans-serif;
 }
 `;
 
