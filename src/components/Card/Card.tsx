@@ -2,6 +2,7 @@ import Badge from "../Badge/Badge";
 import BudgetButton from "../BudgetButton/BudgetButton";
 import BudgetCard from "../BudgetCard/BudgetCard";
 import { Close } from "../Close/Close";
+import Form from "../Form/Form";
 import { List } from "../List/List";
 import { ListItem } from "../ListItem/ListItem";
 import SearchInput from "../SearchInput/SearchInput";
@@ -24,8 +25,6 @@ const Card = () => {
           <BudgetCard type="remaining">Remaining: $123</BudgetCard>
           <BudgetCard type="pent:">Spent so far: $30</BudgetCard>
         </BudgetContainer>
-      </Container>
-      <Container>
         <StyledTitle>Expenses</StyledTitle>
         <SearchInput />
         <List>
@@ -46,6 +45,8 @@ const Card = () => {
             <Close />
           </ListItem>
         </List>
+        <StyledTitle>Add Expense</StyledTitle>
+        <Form></Form>
       </Container>
     </StyledCard>
   );
