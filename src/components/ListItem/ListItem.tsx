@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { StyledListItem } from "./style";
+import { StyledListItem } from "./styles";
 
 interface IListitem {
   children: ReactNode;

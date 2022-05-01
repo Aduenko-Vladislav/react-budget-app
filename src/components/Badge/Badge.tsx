@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledBadge } from "./style";
+import { StyledBadge } from "./styles";
 
 interface IBadge {
   children: string;
