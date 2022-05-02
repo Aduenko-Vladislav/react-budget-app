@@ -1,12 +1,9 @@
-import React from "react";
 import { StyledBadge } from "./styles";
 
 interface IBadge {
-  children: string;
+  cost: number;
 }
 
-export const Badge = ({ children }: IBadge) => {
-  return <StyledBadge>{children}</StyledBadge>;
+export const Badge = ({cost}:IBadge) => {
+  return <StyledBadge>{`${cost}`}</StyledBadge>;
 };
-
-export default Badge;

@@ -1,10 +1,18 @@
-import React, { ReactNode } from "react";
+import { IExpenses } from "../../context/ExpenseContext/types";
+import { Badge } from "../Badge/Badge";
+import { Close } from "../Close/Close";
 import { StyledListItem } from "./styles";
 
-interface IListitem {
-  children: ReactNode;
+interface IListItem {
+  item: IExpenses;
 }
 
-export const ListItem = ({ children }: IListitem) => {
-  return <StyledListItem>{children}</StyledListItem>;
+export const ListItem = ({ item }: IListItem) => {
+  return (
+    <StyledListItem>
+      {item.name}
+      <Badge cost={item.cost}></Badge>
+      <Close />
+    </StyledListItem>
+  );
 };
