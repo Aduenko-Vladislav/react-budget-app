@@ -7,6 +7,7 @@ export interface IExpenseContextProviderProps {
 export interface IExpenseContext {
   expenses: IExpenses[];
   setExpense: (newExpenses: IExpenses[]) => void;
+  deleteExpense: (id: string) => void;
 }
 
 export interface IExpenses{

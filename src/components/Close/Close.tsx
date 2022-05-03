@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import close from "../../assets/icons/close.svg";
 
-export const Close = () => {
-  return <StyledClose src={close} alt="Delete" />;
+interface IClose {
+  onClick: () => void;
+}
+
+export const Close = ({onClick}: IClose) => {
+  return <StyledClose src={close} alt="Delete" onClick={onClick} />;
 };
 
 const StyledClose = styled.img`
