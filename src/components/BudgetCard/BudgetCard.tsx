@@ -7,7 +7,7 @@ interface IBudgetCard {
 }
 
 export const BudgetCard = ({ children, type }: IBudgetCard) => {
-  return <StyledBudgetCard type={type}>{children}</StyledBudgetCard>;
+  return <StyledBudgetCard type={type}>{children} </StyledBudgetCard>;
 };
 
 export default BudgetCard;

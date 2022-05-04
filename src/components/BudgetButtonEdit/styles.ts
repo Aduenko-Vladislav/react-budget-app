@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledBudgetButton = styled.button`
+export const StyledBudgetButtonEdit = styled.button`
   padding: 10px 30px;
 
   font-weight: 500;
