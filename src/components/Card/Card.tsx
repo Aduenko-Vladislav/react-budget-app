@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useBudgetContext } from "../../context/BudgetContext/BudgetContext";
 import { BudgetButtonEdit } from "../BudgetButtonEdit/BudgetButtonEdit";
 import { BudgetButtonSave } from "../BudgetButtonSave/BudgetButtonSave";
@@ -9,14 +9,20 @@ import { List } from "../List/List";
 import SearchInput from "../SearchInput/SearchInput";
 import { CustomSelect } from "../Select/Select";
 import { StyledTitle } from "../Title/styles";
+import { useExpensesContext } from "../../context/ExpenseContext/ExpenseContext";
+
 import { BudgetContainer, Container, Header, StyledCard } from "./styles";
 
 const Card = () => {
+  const { expenses } = useExpensesContext();
+  //Budget
+  const { budget, setBudget } = useBudgetContext();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const handleEdit = () => {
     setIsEdit(!isEdit);
   };
   const [inputValue, setInputValue] = useState<number>(0);
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(+e.target.value);
   };
@@ -26,7 +32,27 @@ const Card = () => {
     setBudget(inputValue);
   };
 
-  const { budget, setBudget } = useBudgetContext();
+  const [spent, SetSpent] = useState<number>(0);
+  const [remaining, SetRemaining] = useState<number>(0);
+  const [overspent, setOverspent] = useState<number>(0);
+
+  useEffect(() => {
+    const totalSpent = expenses.reduce((sum, item) => sum + item.cost, 0);
+    SetSpent(totalSpent);
+    SetRemaining(budget - totalSpent);
+    if (totalSpent > budget) {
+      setOverspent(totalSpent - budget);
+    }
+  }, [budget, expenses]);
+
+  const [type, setType] = useState<string>("remaining");
+  useEffect(() => {
+    if (budget > spent) {
+      setType("remaining");
+    } else {
+      setType("overspending");
+    }
+  });
 
   return (
     <StyledCard>
@@ -36,20 +62,24 @@ const Card = () => {
           <CustomSelect />
         </Header>
         <BudgetContainer>
-          <BudgetCard type="budget">
+          <BudgetCard isEdit type="budget">
             {isEdit ? (
               <BudgetInput handleInput={handleInput} />
             ) : (
-              `Budget :${budget}`
+              `Budget : ${budget}`
             )}
             {isEdit ? (
-              <BudgetButtonSave handleSave={handleSave}> Save </BudgetButtonSave>
+              <BudgetButtonSave handleSave={handleSave}>Save</BudgetButtonSave>
             ) : (
-              <BudgetButtonEdit handleEdit={handleEdit}> Edit </BudgetButtonEdit>
+              <BudgetButtonEdit handleEdit={handleEdit}>Edit</BudgetButtonEdit>
             )}
           </BudgetCard>
-          <BudgetCard type="remaining">Remaining: $123</BudgetCard>
-          <BudgetCard type="pent:">Spent so far: $30</BudgetCard>
+          <BudgetCard type={type}>
+            {type === "remaining"
+              ? `Remaining: ${remaining}`
+              : `Overspending by ${overspent}`}
+          </BudgetCard>
+          <BudgetCard type="spent:">Spent so far: {spent} </BudgetCard>
         </BudgetContainer>
         <StyledTitle>Expenses</StyledTitle>
         <SearchInput />

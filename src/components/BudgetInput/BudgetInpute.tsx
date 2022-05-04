@@ -14,4 +14,3 @@ export const BudgetInput = ({ handleInput }: IBudgetInput) => {
     ></StyledBudgetInput>
   );
 };
-  

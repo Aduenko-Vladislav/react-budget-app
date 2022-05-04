@@ -16,15 +16,18 @@ export const StyledBudgetCard = styled.div<IBudgetCard>`
   line-height: 24px;
 
   border-radius: 10px;
-  background-color: ${({ type }) => {
+  ${({ type }) => {
     switch (type) {
       case "budget":
-        return "rgb(124, 198, 254)";
+        return `background-color: rgb(124, 198, 254)`;
       case "remaining":
-        return " rgba(204, 213, 255)";
+        return `background-color: rgb(204, 213, 255)`;
+      case "overspending":
+        return `background-color: rgb(255, 0, 0);
+        color: rgb(255, 255, 255)`;
 
       default:
-        return "rgb(231, 187, 227)";
+        return `background-color: rgb(231, 187, 227)`;
     }
   }};
 `;

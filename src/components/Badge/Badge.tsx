@@ -4,6 +4,6 @@ interface IBadge {
   cost: number;
 }
 
-export const Badge = ({cost}:IBadge) => {
+export const Badge = ({ cost }: IBadge) => {
   return <StyledBadge>{`${cost}`}</StyledBadge>;
 };

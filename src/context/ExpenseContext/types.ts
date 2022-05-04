@@ -10,8 +10,8 @@ export interface IExpenseContext {
   deleteExpense: (id: string) => void;
 }
 
-export interface IExpenses{
-    id: string;
-    name:string;
-    cost: number;
+export interface IExpenses {
+  id: string;
+  name: string;
+  cost: number;
 }

@@ -23,7 +23,8 @@ const useExpensesContextValue = () => {
     setExpense: (newExpenses: IExpenses[]) => {
       setExpenseContext((ctx) => ({ ...ctx, expenses: newExpenses }));
     },
-    deleteExpense: (id: string) => { /// удаление элементов li через фильтр
+    deleteExpense: (id: string) => {
+      /// удаление элементов li через фильтр
       setExpenseContext((ctx) => ({
         ...ctx,
         expenses: ctx.expenses.filter((expense) => expense.id !== id),

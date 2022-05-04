@@ -4,6 +4,7 @@ import { StyledBudgetCard } from "./styles";
 interface IBudgetCard {
   children: ReactNode;
   type: string;
+  isEdit?: boolean;
 }
 
 export const BudgetCard = ({ children, type }: IBudgetCard) => {

@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { useExpensesContext } from "../../context/ExpenseContext/ExpenseContext";
 import { IExpenses } from "../../context/ExpenseContext/types";
 import { ListItem } from "../ListItem/ListItem";
+import { StyledBlock, StyledList } from "./styles";
 
 export const List = () => {
   const { expenses } = useExpensesContext();
@@ -18,17 +18,3 @@ export const List = () => {
     </StyledList>
   );
 };
-
-const StyledList = styled.ul`
-  min-height: 260px;
-  overflow: auto;
-  list-style-type: none;
-`;
-
-const StyledBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 260px;
-`;
