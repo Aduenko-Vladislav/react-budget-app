@@ -52,7 +52,7 @@ const Card = () => {
     } else {
       setType("overspending");
     }
-  });
+  }, [spent, budget]);
 
   return (
     <StyledCard>
