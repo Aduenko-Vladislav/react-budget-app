@@ -12,10 +12,11 @@ import { StyledTitle } from "../Title/styles";
 import { useExpensesContext } from "../../context/ExpenseContext/ExpenseContext";
 
 import { BudgetContainer, Container, Header, StyledCard } from "./styles";
+import { IExpenses } from "../../context/ExpenseContext/types";
 
 const Card = () => {
-  const { expenses } = useExpensesContext();
   //Budget
+  const { expenses } = useExpensesContext();
   const { budget, setBudget } = useBudgetContext();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const handleEdit = () => {
@@ -32,14 +33,14 @@ const Card = () => {
     setBudget(inputValue);
   };
 
-  const [spent, SetSpent] = useState<number>(0);
-  const [remaining, SetRemaining] = useState<number>(0);
+  const [spent, setSpent] = useState<number>(0);
+  const [remaining, setRemaining] = useState<number>(0);
   const [overspent, setOverspent] = useState<number>(0);
 
   useEffect(() => {
     const totalSpent = expenses.reduce((sum, item) => sum + item.cost, 0);
-    SetSpent(totalSpent);
-    SetRemaining(budget - totalSpent);
+    setSpent(totalSpent);
+    setRemaining(budget - totalSpent);
     if (totalSpent > budget) {
       setOverspent(totalSpent - budget);
     }
@@ -53,6 +54,23 @@ const Card = () => {
       setType("overspending");
     }
   }, [spent, budget]);
+
+  // Search
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [findedExpenses, setFindedExpenses] = useState<IExpenses[]>([]);
+
+  const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  useEffect(() => {
+    const findExpenses = expenses;
+    setFindedExpenses(
+      findExpenses.filter((item) =>
+        item.name.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  }, [searchValue, expenses]);
 
   return (
     <StyledCard>
@@ -82,8 +100,11 @@ const Card = () => {
           <BudgetCard type="spent:">Spent so far: {spent} </BudgetCard>
         </BudgetContainer>
         <StyledTitle>Expenses</StyledTitle>
-        <SearchInput />
-        <List />
+        <SearchInput
+          searchValue={searchValue}
+          handleSearchInput={handleSearchInput}
+        />
+        <List findedExpenses={findedExpenses} />
         <StyledTitle>Add Expense</StyledTitle>
         <Form></Form>
       </Container>
