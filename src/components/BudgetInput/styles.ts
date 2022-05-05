@@ -6,7 +6,15 @@ export const StyledBudgetInput = styled.input`
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-  color: rgba(255, 255, 255, 0.6);
 
+  color: rgba(255, 255, 255, 0.6);
   background-color: rgb(124, 198, 254);
+  outline: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
 `;

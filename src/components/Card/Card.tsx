@@ -7,10 +7,10 @@ import { BudgetInput } from "../BudgetInput/BudgetInpute";
 import Form from "../Form/Form";
 import { List } from "../List/List";
 import SearchInput from "../SearchInput/SearchInput";
-import { CustomSelect } from "../Select/Select";
+import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { StyledTitle } from "../Title/styles";
 import { useExpensesContext } from "../../context/ExpenseContext/ExpenseContext";
-
+import { useCurrencyContex } from "../../context/CurrencyContext/CurrencyContext";
 import { BudgetContainer, Container, Header, StyledCard } from "./styles";
 import { IExpenses } from "../../context/ExpenseContext/types";
 
@@ -72,6 +72,7 @@ const Card = () => {
     );
   }, [searchValue, expenses]);
 
+  const { currency } = useCurrencyContex();
   return (
     <StyledCard>
       <Container>
@@ -84,7 +85,7 @@ const Card = () => {
             {isEdit ? (
               <BudgetInput handleInput={handleInput} />
             ) : (
-              `Budget : ${budget}`
+              `Budget : ${currency}${budget} `
             )}
             {isEdit ? (
               <BudgetButtonSave handleSave={handleSave}>Save</BudgetButtonSave>
@@ -94,10 +95,10 @@ const Card = () => {
           </BudgetCard>
           <BudgetCard type={type}>
             {type === "remaining"
-              ? `Remaining: ${remaining}`
-              : `Overspending by ${overspent}`}
+              ? `Remaining: ${currency}${remaining}`
+              : `Overspending by ${currency}${overspent}`}
           </BudgetCard>
-          <BudgetCard type="spent:">Spent so far: {spent} </BudgetCard>
+          <BudgetCard type="spent:">Spent so far: {currency}{spent} </BudgetCard>
         </BudgetContainer>
         <StyledTitle>Expenses</StyledTitle>
         <SearchInput

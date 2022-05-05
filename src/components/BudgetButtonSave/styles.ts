@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledBudgetButtonSave = styled.button`
-  padding: 10px 30px;
+  max-width: 85px;
+  width: 100%;
+  padding: 10px;
 
   font-weight: 500;
   font-size: 14px;
@@ -12,6 +14,8 @@ export const StyledBudgetButtonSave = styled.button`
 
   cursor: pointer;
   &:hover {
-    background-color: rgba(204, 255, 255);
+    background-color: rgba(178, 255, 172);
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 `;

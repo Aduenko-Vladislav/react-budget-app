@@ -24,7 +24,6 @@ const useExpensesContextValue = () => {
       setExpenseContext((ctx) => ({ ...ctx, expenses: newExpenses }));
     },
     deleteExpense: (id: string) => {
-      /// удаление элементов li через фильтр
       setExpenseContext((ctx) => ({
         ...ctx,
         expenses: ctx.expenses.filter((expense) => expense.id !== id),
