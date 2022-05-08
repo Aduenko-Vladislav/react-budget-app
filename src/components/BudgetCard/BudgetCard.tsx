@@ -17,6 +17,7 @@ export const BudgetCard = () => {
   const handleEdit = () => {
     setIsEdit(!isEdit);
   };
+  
   const [inputValue, setInputValue] = useState<number>(0);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
