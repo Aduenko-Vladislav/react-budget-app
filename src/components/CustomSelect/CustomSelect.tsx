@@ -1,8 +1,7 @@
-import { useState } from "react";
 import Select from "react-select";
 import { Currency } from "../../config/Currency";
 import { useCurrencyContex } from "../../context/CurrencyContext/CurrencyContext";
-import { IOption } from "../../type/types";
+import { IOption } from "../../types/types";
 
 const options: IOption[] = [
   { value: Currency.USD, label: "USD" },
@@ -11,23 +10,24 @@ const options: IOption[] = [
 ];
 
 export const CustomSelect = () => {
-  const { setCurrency } = useCurrencyContex();
-  const [selectCurrency, setSelectCurrency] = useState<IOption>();
+  const { currency, setCurrency } = useCurrencyContex();
 
   const handleSelect = (option: IOption | null) => {
     if (option) {
-      setSelectCurrency(option);
       setCurrency(option.value);
     }
+  };
+
+  const getDefaultoption = () => {
+    return options.find(({ value }) => value === currency);
   };
 
   return (
     <Select
       options={options}
       isMulti={false}
-      defaultValue={options[0]}
+      defaultValue={getDefaultoption()}
       onChange={handleSelect}
-      value={selectCurrency}
     />
   );
 };
