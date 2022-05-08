@@ -1,5 +1,6 @@
 import { StyledTitle } from "./styles";
 
+
 interface ITitle {
   text: string;
 }
