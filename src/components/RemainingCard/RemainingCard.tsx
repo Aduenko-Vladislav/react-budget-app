@@ -16,7 +16,7 @@ const RemainingCard = () => {
     <StyledRemainingCard isOverBudget={isOverBudget}>
       <Title isOverBudget={isOverBudget}>
         {isOverBudget
-          ? `Overspending by${currency}${Math.abs(remaining)}`
+          ? `Overspending by ${currency}${Math.abs(remaining)}`
           : `Remaining: ${currency}${remaining}`}
       </Title>
     </StyledRemainingCard>
