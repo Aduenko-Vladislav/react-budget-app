@@ -1,9 +1,9 @@
 import { StyledTitle } from "./styles";
 
 interface ITitle {
-  children: string;
+  text: string;
 }
 
-export const Title = ({ children }: ITitle) => {
-  return <StyledTitle>{children}</StyledTitle>;
+export const Title = ({ text }: ITitle) => {
+  return <StyledTitle>{text}</StyledTitle>;
 };
